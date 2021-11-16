@@ -2,7 +2,7 @@
 
 W ramach tego zadania należy zmodyfikować kod zadania **Sokoban 4** tak, aby zamiast środowiska CodeWorld używało środowiska tekstowego.
 Stworzenie takiego srodowiska w oparciu o standardowe funkcje tekstowego I/O jest również przedmiotem zadania.
-Frazę `import codeWorld` należy usunąć.
+Frazę `import CodeWorld` należy usunąć.
 
 Elementami rozwiązania powinny być co najmniej:
 
