@@ -6,9 +6,9 @@ Frazę `import CodeWorld` należy usunąć.
 
 Elementami rozwiązania powinny być co najmniej:
 
-* Zmiana typu `Interaction` na odpowiedni dla wyjscia tekstowego
+* Zmiana typu `Activity` na odpowiedni dla wyjscia tekstowego
 ```haskell
-data Interaction world = Interaction
+data Activity world = Activity
     world
     (Event -> world -> world)
     (world -> Screen)
@@ -40,7 +40,7 @@ NB funkcja `translated` przy takiej reprezentacji będzie wymagała dwukrotnej z
 * Stworzenie funkcji 
 
 ```
-runInteraction :: Interaction s -> IO ()
+runActivity:: Activity s -> IO ()
 ```
 W pierwszej kolejności należy wyłączyć buforowanie tak, aby informacja o naciśniętych klawiszach trafiała do programu natychmiast 
 a nie dopiero po `Enter`:
@@ -54,11 +54,11 @@ Czyszczenie ekranu można zrealizować przy pomocy [kodu ANSI](https://en.wikipe
 putStr "\ESCc"
 ```
 
-Narysuj bieżący stan, dalej interakcja w rekurencyjnej funkcji `go` (lokalnej dla `runInteraction`):
+Narysuj bieżący stan, dalej interakcja w rekurencyjnej funkcji `go` (lokalnej dla `runActivity`):
 1. wczytaj znak (używając `getChar`)
 2. przekaż do funkcji obsługi zdarzeń (ale patrz uwaga o strzałkach poniżej), która da kolejny stan
 3. wyczyść ekran
-4. odwzoruj stan (używając funkcji renderującej w `Interaction` oraz `putStr`)
+4. odwzoruj stan (używając funkcji renderującej w `Activity` oraz `putStr`)
 5. wywołaj rekurencyjnie `go`
     
 Do obsługi kierunków mozna uzyć klawiszy WASD (prostsze) albo strzałek (wymaga obsługi wieloznakowych sekwencji ANSI, wyżej punktowane).
